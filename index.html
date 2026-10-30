@@ -114,10 +114,10 @@
                         <div>
                             <h3>Just stopping by?</h3>
                             <p>Drop your name for a little hello.</p>
-                            <div class="greeting-controls">
+                            <form class="greeting-controls" id="greeting-form">
                                 <input id="name-input" type="text" placeholder="Your name" aria-label="Your name">
-                                <button id="greet-btn" class="button button-secondary" type="button">Say hi</button>
-                            </div>
+                                <button id="greet-btn" class="button button-secondary" type="submit">Say hi</button>
+                            </form>
                             <p id="output" class="greeting-output" aria-live="polite"></p>
                         </div>
                     </div>
@@ -135,7 +135,8 @@
                     </div>
                     <div class="form-field">
                         <label for="message">Tell me more <span>(optional)</span></label>
-                        <textarea id="message" name="message" placeholder="Share your ideas, preferences, or questions..." rows="5"></textarea>
+                        <textarea id="message" name="message" placeholder="Share your ideas, preferences, or questions..." rows="5" aria-describedby="message-count"></textarea>
+                        <p id="message-count" class="message-count"><output for="message">0 characters</output> <span>— no hard limit</span></p>
                     </div>
                     <div class="form-actions">
                         <button class="button button-primary" type="submit">Send a message <span aria-hidden="true">&rarr;</span></button>

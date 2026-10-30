@@ -1,28 +1,45 @@
-console.log("script.js is running!")
-
-const nameInput = document.querySelector('#name-input');
-const greetBtn = document.querySelector('#greet-btn');
+const greetingForm = document.querySelector("#greeting-form");
+const nameInput = document.querySelector("#name-input");
 const output = document.querySelector("#output");
 
-if (nameInput && greetBtn && output) {
-    function greet() {
-        const name = nameInput.value;
-        output.textContent = `Hi ${name}!`;
-    }
-
-    greetBtn.addEventListener("click", greet);
+if (greetingForm && nameInput && output) {
+    greetingForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = nameInput.value.trim();
+        output.textContent = name ? `Hi ${name}!` : "Hi there!";
+    });
 }
 
 const themeBtn = document.querySelector("#theme-btn");
 
 if (themeBtn) {
-    function toggleTheme() {
-        const isDark = document.body.classList.toggle("dark");
+    const themeStorageKey = "ck-theme";
+
+    function updateThemeButton() {
+        const isDark = document.body.classList.contains("dark");
         themeBtn.textContent = isDark ? "Light mode" : "Dark mode";
         themeBtn.setAttribute("aria-pressed", String(isDark));
     }
 
-    themeBtn.addEventListener("click", toggleTheme);
+    try {
+        const savedTheme = localStorage.getItem(themeStorageKey);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.body.classList.toggle("dark", savedTheme ? savedTheme === "dark" : prefersDark);
+    } catch (error) {
+        console.warn("Could not read the saved theme preference.", error);
+    }
+
+    updateThemeButton();
+
+    themeBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark");
+        updateThemeButton();
+        try {
+            localStorage.setItem(themeStorageKey, isDark ? "dark" : "light");
+        } catch (error) {
+            console.warn("Could not save the theme preference.", error);
+        }
+    });
 }
 
 const preferenceForm = document.querySelector("#preference-form");
@@ -30,6 +47,25 @@ const recommendation = document.querySelector("#recommendation");
 const recommendationText = document.querySelector("#recommendation-text");
 const useRecommendationButton = document.querySelector("#use-recommendation");
 const messageTextarea = document.querySelector("#message");
+const messageCount = document.querySelector("#message-count output");
+
+function updateMessageCount() {
+    if (!messageTextarea || !messageCount) {
+        return;
+    }
+
+    const length = messageTextarea.value.length;
+    messageCount.textContent = `${length} characters${length > 500 ? " — consider shortening" : ""}`;
+}
+
+if (messageTextarea && messageCount) {
+    updateMessageCount();
+    messageTextarea.addEventListener("input", updateMessageCount);
+
+    messageTextarea.form.addEventListener("reset", () => {
+        setTimeout(updateMessageCount);
+    });
+}
 
 if (preferenceForm && recommendation && recommendationText && useRecommendationButton && messageTextarea) {
     const layoutSuggestions = {
@@ -76,6 +112,7 @@ if (preferenceForm && recommendation && recommendationText && useRecommendationB
         messageTextarea.value = existingMessage
             ? `${existingMessage}\n\n${currentRecommendation}`
             : currentRecommendation;
+        updateMessageCount();
         messageTextarea.focus();
         useRecommendationButton.textContent = "Added to your message";
         useRecommendationButton.disabled = true;
