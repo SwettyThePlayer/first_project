@@ -3,43 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f7f4">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <title>Custom Keyboards</title>
+    <title>Custom Keyboards by Alan</title>
 </head>
 <body>
-    <nav>
-        <p>CK by Alan</p>
-        <ul>
-            <li><button id="theme-btn">Dark Mode</button></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="CK by Alan home">
+                <span class="brand-mark" aria-hidden="true">CK</span>
+                <span>custom keyboards <span class="brand-by">by Alan</span></span>
+            </a>
+            <div class="nav-actions">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#picker">Find your fit</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button id="theme-btn" class="theme-btn" type="button" aria-pressed="false">Dark mode</button>
+            </div>
+        </nav>
+    </header>
+
     <main>
-        <h1>Custom Keyboards by Alan | Customs - Mods</h1>
-        <h3>Do you need a keyboard made specifically for you?</h3>
-        <p>I think I have a solution for that!</p>
-        <p>If you have no idea on what you need - we're going to figure it out together.</p>
-        <p>You have some preferences or know exactly what you're looking for? Tell me and I'm just going to do my job.</p>
-        <h2>Fill out this form and hit me up!</h2>
-        <form method="post" action="script.php">
-            <label for="name">Name</label><br>
-            <input type="text" id="name" placeholder="John"><br>
-            <label for="email">Email</label><br>
-            <input type="email" id="email" placeholder="email@example.com"><br>
-            <p>Tell me more!</p>
-            <textarea placeholder="Write everything here!" rows="5" cols="70"></textarea><br>
-            <input type="submit" value="Send">
-            <input type="reset" value="Reset">
-        </form>
-        <input id="name-input" placeholder="Your Name">
-        <button id="greet-btn">Say Hi!</button>
-        <p id="output"></p>
+        <section class="hero page-width" id="home" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> Custom builds, made personal</p>
+                <h1 id="hero-title">A keyboard that feels like <span>your own.</span></h1>
+                <p class="hero-description">Thoughtful custom keyboards and mods, built around how you work, play, and type.</p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#picker">Find your starting point <span aria-hidden="true">&rarr;</span></a>
+                    <a class="text-link" href="#contact">Or tell me what you have in mind</a>
+                </div>
+            </div>
+            <div class="keyboard-art" aria-hidden="true">
+                <div class="keyboard-topline"><span>CK / 01</span><span>BUILT FOR YOU</span></div>
+                <div class="key-row">
+                    <span class="key key-accent">esc</span><span class="key">1</span><span class="key">2</span><span class="key">3</span><span class="key">4</span><span class="key key-accent">5</span>
+                </div>
+                <div class="key-row">
+                    <span class="key">tab</span><span class="key">Q</span><span class="key">W</span><span class="key">E</span><span class="key">R</span><span class="key">T</span>
+                </div>
+                <div class="key-row">
+                    <span class="key key-wide">caps</span><span class="key">A</span><span class="key">S</span><span class="key key-accent">D</span><span class="key">F</span><span class="key">G</span>
+                </div>
+                <div class="key-row">
+                    <span class="key key-extra-wide">shift</span><span class="key">Z</span><span class="key">X</span><span class="key">C</span><span class="key key-accent">V</span><span class="key key-wide">enter</span>
+                </div>
+                <div class="key-row">
+                    <span class="key">ctrl</span><span class="key">fn</span><span class="key key-space"></span><span class="key">alt</span><span class="key">ctrl</span>
+                </div>
+                <p class="keyboard-caption"><span></span> Your layout. Your feel. Your sound.</p>
+            </div>
+        </section>
+
+        <section class="picker-section page-width" id="picker" aria-labelledby="picker-title">
+            <div class="section-heading">
+                <p class="eyebrow">Not sure where to start?</p>
+                <h2 id="picker-title">Let’s find your feel.</h2>
+                <p>Choose what matters to you. We’ll turn it into a build direction you can make your own.</p>
+            </div>
+            <div class="keyboard-picker">
+                <form id="preference-form">
+                    <fieldset>
+                        <legend><span class="step-number">01</span> What size do you prefer?</legend>
+                        <div class="option-list">
+                            <label><input type="radio" name="layout" value="compact" required><span>Compact <small>60%</small></span></label>
+                            <label><input type="radio" name="layout" value="tkl" required><span>Tenkeyless <small>TKL</small></span></label>
+                            <label><input type="radio" name="layout" value="full" required><span>Full-size <small>With number pad</small></span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend><span class="step-number">02</span> How should it sound and feel?</legend>
+                        <div class="option-list">
+                            <label><input type="radio" name="sound" value="quiet" required><span>Quiet <small>Smooth &amp; subtle</small></span></label>
+                            <label><input type="radio" name="sound" value="tactile" required><span>Tactile <small>A little feedback</small></span></label>
+                            <label><input type="radio" name="sound" value="clicky" required><span>Clicky <small>Bold &amp; crisp</small></span></label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend><span class="step-number">03</span> What will you mainly use it for?</legend>
+                        <div class="option-list">
+                            <label><input type="radio" name="useCase" value="typing" required><span>Typing <small>Comfort first</small></span></label>
+                            <label><input type="radio" name="useCase" value="gaming" required><span>Gaming <small>Desk space matters</small></span></label>
+                            <label><input type="radio" name="useCase" value="both" required><span>A bit of everything <small>Keep it balanced</small></span></label>
+                        </div>
+                    </fieldset>
+                    <button class="button button-primary picker-submit" type="submit">Show my suggestion <span aria-hidden="true">&rarr;</span></button>
+                </form>
+                <div id="recommendation" class="recommendation" aria-live="polite" hidden>
+                    <div class="recommendation-icon" aria-hidden="true">&#10003;</div>
+                    <div>
+                        <h3>Your starting point</h3>
+                        <p id="recommendation-text"></p>
+                        <button id="use-recommendation" class="text-link" type="button">Add this to my message &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact" aria-labelledby="contact-title">
+            <div class="contact-layout page-width">
+                <div class="contact-copy">
+                    <p class="eyebrow">Your idea, your keyboard</p>
+                    <h2 id="contact-title">Let’s make it click.</h2>
+                    <p>Have a clear vision or just a few questions? Send me a note and we’ll figure out the right build together.</p>
+                    <div class="hello-card">
+                        <span class="hello-spark" aria-hidden="true">✳</span>
+                        <div>
+                            <h3>Just stopping by?</h3>
+                            <p>Drop your name for a little hello.</p>
+                            <div class="greeting-controls">
+                                <input id="name-input" type="text" placeholder="Your name" aria-label="Your name">
+                                <button id="greet-btn" class="button button-secondary" type="button">Say hi</button>
+                            </div>
+                            <p id="output" class="greeting-output" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" method="post" action="script.php">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="message">Tell me more <span>(optional)</span></label>
+                        <textarea id="message" name="message" placeholder="Share your ideas, preferences, or questions..." rows="5"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="button button-primary" type="submit">Send a message <span aria-hidden="true">&rarr;</span></button>
+                        <button class="reset-button" type="reset">Clear form</button>
+                    </div>
+                </form>
+            </div>
+        </section>
     </main>
-    <footer>
-        <p>&copy; 2026 Alan's Website. All rights reserved.</p>
+
+    <footer class="site-footer">
+        <p><span class="footer-brand">CK by Alan</span> <span>&copy; 2026. Made for the love of typing.</span></p>
+        <a href="#home">Back to top &uarr;</a>
     </footer>
 </body>
 </html>
